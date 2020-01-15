@@ -28,16 +28,8 @@
     <string name="Channels">チャンネル</string>
     <string name="Bots">ボット</string>
     <string name="Admins">マネージド</string>
-    <string name="EnableNya">長押しするときにかわいいしっぽを送る</string>
-    <string name="NyaSuffix">メッセージテール</string>
-    <string name="NyaSuffixHint">ぽい</string>
     <string name="Prpr">ペロペロ</string>
     <string name="TransparentStatusBar">完全に透明なステータスバーを使う</string>
-    <string name="NavigationBarTint">Nav Bar と Status Bar の色を有効にする</string>
-    <string name="NavigationBarColor">Nav Bar の色</string>
-    <string name="NavigationBarColorBlack">黒</string>
-    <string name="NavigationBarColorActionBar">アクションバーの色を使う</string>
-    <string name="NavigationBarColorMessagePanel">メッセージパネルの色を使う</string>
     <string name="EnableResidentNotification">常駐通知を表示する</string>
     <string name="DisableResidentNotification">常駐通知を無効にする</string>
     <string name="NekogramRunning">Nekogram ランニング</string>

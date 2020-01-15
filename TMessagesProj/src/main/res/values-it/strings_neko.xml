@@ -26,15 +26,7 @@
     <string name="Groups">Gruppi</string>
     <string name="Channels">Canali</string>
     <string name="Admins">Amministratore</string>
-    <string name="EnableNya">Invia messaggio con suffisso tenendo premuto.</string>
-    <string name="NyaSuffix">Suffisso del messaggio</string>
-    <string name="NyaSuffixHint">Suffisso</string>
     <string name="TransparentStatusBar">Barra di stato trasparente</string>
-    <string name="NavigationBarTint">Imposta colore per la barra di stato/navigazione</string>
-    <string name="NavigationBarColor">Colore barra di navigazione</string>
-    <string name="NavigationBarColorBlack">Nero</string>
-    <string name="NavigationBarColorActionBar">Usa il colore della barra d\'azione</string>
-    <string name="NavigationBarColorMessagePanel">Usa il colore del pannello dei messaggi</string>
     <string name="EnableResidentNotification">Mostra notifica persistente</string>
     <string name="DisableResidentNotification">Disabilita notifica persistente</string>
     <string name="NekogramRunning">Nekogram è in esecuzione</string>
