@@ -49,5 +49,8 @@
     <string name="SensitiveContent">敏感内容</string>
     <string name="SensitiveDisableFiltering">关闭过滤</string>
     <string name="SensitiveAbout">在所有 Telegram 设备上显示公共频道中的敏感媒体内容。</string>
+<<<<<<< HEAD
     <string name="StickerSize">贴纸大小</string>
+=======
+>>>>>>> 2634851c95b5c13380831dbe3e6a220b1ee0c13f
 </resources>

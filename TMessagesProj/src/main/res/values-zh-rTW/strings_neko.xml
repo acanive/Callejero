@@ -48,6 +48,10 @@
     <string name="SaveCacheToPrivateDirectory">緩存媒體文件到應用私有目錄下*</string>
     <string name="SensitiveContent">敏感內容</string>
     <string name="SensitiveDisableFiltering">關閉過濾</string>
+<<<<<<< HEAD
     <string name="SensitiveAbout">在所有 Telegram 設備上顯示公共頻道中的敏感媒體內容。</string>
     <string name="StickerSize">貼紙大小</string>
+=======
+    <string name="SensitiveAbout">在所有 Telegram 設備上顯示公共頻道中的敏感媒體內容。 </string>
+>>>>>>> 2634851c95b5c13380831dbe3e6a220b1ee0c13f
 </resources>
