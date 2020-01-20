@@ -47,6 +47,7 @@
     <string name="Nya">喵！</string>
     <string name="SaveCacheToPrivateDirectory">緩存媒體文件到應用私有目錄下*</string>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <string name="SensitiveContent">敏感內容</string>
     <string name="SensitiveDisableFiltering">關閉過濾</string>
 <<<<<<< HEAD
@@ -56,6 +57,8 @@
     <string name="SensitiveAbout">在所有 Telegram 設備上顯示公共頻道中的敏感媒體內容。 </string>
 >>>>>>> 2634851c95b5c13380831dbe3e6a220b1ee0c13f
 =======
+=======
+>>>>>>> master
     <string name="SensitiveDisableFiltering">禁用敏感內容過濾</string>
     <string name="SensitiveAbout">在您所有設備上顯示公共頻道中的敏感媒體內容。</string>
     <string name="StickerSize">貼圖大小</string>
@@ -68,5 +71,8 @@
     <string name="UnlimitedFavoredStickersAbout">向收藏夾添加無限貼圖，貼圖可能將不能同步到其它裝置。</string>
     <string name="MessageDetails">資訊</string>
     <string name="ExportAsJson">導出為 JSON</string>
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
 </resources>

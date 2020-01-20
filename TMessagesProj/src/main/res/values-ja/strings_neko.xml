@@ -46,6 +46,7 @@
     <string name="ViewHistory">履歴を見る</string>
     <string name="Nya">にゃ!</string>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <string name="SaveCacheToPrivateDirectory">Cache を private directory に保存する*</string>
     <string name="SensitiveContent">センシティブな内容</string>
     <string name="SensitiveDisableFiltering">フィルタリングを無効にする</string>
@@ -59,6 +60,12 @@
     <string name="SensitiveDisableFiltering">Sensitiveな内容のfilteringを無効にする</string>
     <string name="SensitiveAbout">公開チャンネルに投稿されたセンシティブな内容をすべてあなたの端末に表示します。</string>
     <string name="StickerSize">ステッカーのサイズ</string>
+=======
+    <string name="SaveCacheToPrivateDirectory">Cacheをprivate directoryに保存する*</string>
+    <string name="SensitiveDisableFiltering">Sensitiveな内容のfilteringを無効にする</string>
+    <string name="SensitiveAbout">公開チャンネルに投稿されたセンシティブな内容をすべてあなたの端末に表示します。</string>
+    <string name="StickerSize">ステッカーのサイズ</string>
+>>>>>>> master
     <string name="StickerSizeDialogMessageBigOne">大きな子</string>
     <string name="StickerSizeDialogMessageSmallOne">小さな子</string>
     <string name="StickerSizeDialogMessageReplyTo">にゃ</string>
@@ -68,5 +75,8 @@
     <string name="UnlimitedFavoredStickersAbout">お気に入りに無制限のステッカーを追加します。ステッカーは他の端末と同期されない場合があります。</string>
     <string name="MessageDetails">詳細</string>
     <string name="ExportAsJson">JSONとしてエクスポート</string>
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
 </resources>
