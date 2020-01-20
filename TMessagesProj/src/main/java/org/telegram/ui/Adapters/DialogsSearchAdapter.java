@@ -57,7 +57,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import tw.nekomimi.nekogram.FilterPopup;
+import tw.nekomimi.nekogram2.FilterPopup;
 
 public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
 

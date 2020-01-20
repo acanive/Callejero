@@ -1,4 +1,4 @@
-package tw.nekomimi.nekogram;
+package tw.nekomimi.nekogram2;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BaseController;

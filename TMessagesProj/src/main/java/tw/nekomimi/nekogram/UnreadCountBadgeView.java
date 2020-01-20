@@ -1,4 +1,4 @@
-package tw.nekomimi.nekogram;
+package tw.nekomimi.nekogram2;
 
 import android.content.Context;
 import android.graphics.Canvas;

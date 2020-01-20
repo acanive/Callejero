@@ -55,7 +55,7 @@ import java.util.Collections;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import tw.nekomimi.nekogram.FilterPopup;
+import tw.nekomimi.nekogram2.FilterPopup;
 
 public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
 

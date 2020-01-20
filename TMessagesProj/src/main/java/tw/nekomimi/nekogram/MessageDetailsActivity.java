@@ -1,4 +1,4 @@
-package tw.nekomimi.nekogram;
+package tw.nekomimi.nekogram2;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -53,7 +53,7 @@ import java.util.concurrent.CountDownLatch;
 
 import androidx.core.app.NotificationManagerCompat;
 
-import tw.nekomimi.nekogram.FilterPopup;
+import tw.nekomimi.nekogram2.FilterPopup;
 import tw.nekomimi.nekogram.NekoConfig;
 
 public class MessagesController extends BaseController implements NotificationCenter.NotificationCenterDelegate {

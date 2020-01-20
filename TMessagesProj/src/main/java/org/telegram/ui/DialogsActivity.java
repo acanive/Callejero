@@ -139,8 +139,8 @@ import org.telegram.ui.Components.UndoView;
 import java.util.ArrayList;
 import java.util.Date;
 
-import tw.nekomimi.nekogram.FilterPopup;
-import tw.nekomimi.nekogram.MessageHelper;
+import tw.nekomimi.nekogram2.FilterPopup;
+import tw.nekomimi.nekogram2.MessageHelper;
 
 public class DialogsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     

@@ -58,7 +58,7 @@ import org.telegram.ui.DialogsActivity;
 
 import java.util.ArrayList;
 
-import tw.nekomimi.nekogram.FilterPopup;
+import tw.nekomimi.nekogram2.FilterPopup;
 
 public class DialogCell extends BaseCell {
 

@@ -1,4 +1,4 @@
-package tw.nekomimi.nekogram;
+package tw.nekomimi.nekogram2;
 
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;

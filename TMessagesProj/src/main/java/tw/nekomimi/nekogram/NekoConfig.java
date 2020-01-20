@@ -256,7 +256,7 @@ public class NekoConfig {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("residentNotification", residentNotification);
         editor.commit();
-        Intent duangIntent = new Intent(ApplicationLoader.applicationContext, DuangService.class);
+        Intent duangIntent = new Intent(ApplicationLoader.applicationContext, tw.nekomimi.nekogram.DuangService.class);
         if (residentNotification) {
             ApplicationLoader.applicationContext.startService(duangIntent);
         } else {
