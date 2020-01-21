@@ -45,7 +45,10 @@
     <string name="HideProxySponsorChannel">Proxy sponsor channelを非表示</string>
     <string name="ViewHistory">履歴を見る</string>
     <string name="Nya">にゃ!</string>
-    <string name="SensitiveContent">センシティブな内容</string>
+    <string name="SaveCacheToPrivateDirectory">Cacheをprivate directoryに保存する*</string>
+    <string name="SensitiveDisableFiltering">Sensitiveな内容のfilteringを無効にする</string>
+    <string name="SensitiveAbout">公開チャンネルに投稿されたセンシティブな内容をすべてあなたの端末に表示します。</string>
+    <string name="StickerSize">ステッカーのサイズ</string>
     <string name="StickerSizeDialogMessageBigOne">大きな子</string>
     <string name="StickerSizeDialogMessageSmallOne">小さな子</string>
     <string name="StickerSizeDialogMessageReplyTo">にゃ</string>
