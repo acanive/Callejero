@@ -7204,7 +7204,7 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC.TL_account_unregisterDevice req = new TLRPC.TL_account_unregisterDevice();
             req.token = SharedConfig.pushString;
             req.token_type = 2;
-            for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
+            for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
                 UserConfig userConfig = UserConfig.getInstance(a);
                 if (a != currentAccount && userConfig.isClientActivated()) {
                     req.other_uids.add(userConfig.getClientUserId());
@@ -7267,7 +7267,7 @@ public class MessagesController extends BaseController implements NotificationCe
         req.token = regid;
         req.no_muted = false;
         req.secret = SharedConfig.pushAuthKey;
-        for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
+        for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
             UserConfig userConfig = UserConfig.getInstance(a);
             if (a != currentAccount && userConfig.isClientActivated()) {
                 int uid = userConfig.getClientUserId();

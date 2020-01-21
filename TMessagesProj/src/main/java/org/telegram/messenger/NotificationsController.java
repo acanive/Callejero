@@ -1044,7 +1044,7 @@ public class NotificationsController extends BaseController {
 
     private int getTotalAllUnreadCount() {
         int count = 0;
-        for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
+        for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
             if (UserConfig.getInstance(a).isClientActivated()) {
                 NotificationsController controller = getInstance(a);
                 if (controller.showBadgeNumber) {

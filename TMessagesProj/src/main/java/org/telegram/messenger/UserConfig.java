@@ -22,6 +22,7 @@ import java.io.File;
 
 public class UserConfig extends BaseController {
 
+    private static final int MAX_ACCOUNT = 32;
     public static int selectedAccount;
 
     private final Object sync = new Object();
@@ -111,8 +112,8 @@ public class UserConfig extends BaseController {
         super(instance);
     }
 
-    public static int getInstanceSize() {
-        return Instance.size();
+    public static int getMaxInstanceSize() {
+        return MAX_ACCOUNT;
     }
 
     public int getNewMessageId() {
