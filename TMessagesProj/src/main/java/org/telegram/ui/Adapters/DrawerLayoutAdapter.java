@@ -56,7 +56,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
 
     private int getAccountRowsCount() {
         int count = accountNumbers.size() + 1;
-        if (accountNumbers.size() < UserConfig.MAX_ACCOUNT_COUNT) {
+        if (accountNumbers.size() < UserConfig.getInstanceSize()) {
             count++;
         }
         return count;
@@ -173,7 +173,8 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             if (i < accountNumbers.size()) {
                 return 4;
             } else {
-                if (accountNumbers.size() < UserConfig.MAX_ACCOUNT_COUNT) {
+                int userConfigInstanceSize = UserConfig.getInstanceSize() + 1;
+                if (accountNumbers.size() <  userConfigInstanceSize) {
                     if (i == accountNumbers.size()){
                         return 5;
                     } else if (i == accountNumbers.size() + 1) {
@@ -197,7 +198,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         accountNumbers.clear();
         SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("nekoconfig", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+        for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
             if (UserConfig.getInstance(a).isClientActivated()) {
                 accountNumbers.add(a);
             } else {

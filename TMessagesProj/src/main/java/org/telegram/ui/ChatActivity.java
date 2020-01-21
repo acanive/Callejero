@@ -196,8 +196,8 @@ import org.telegram.ui.Components.URLSpanUserMention;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.voip.VoIPHelper;
 
-import tw.nekomimi.nekogram2.MessageDetailsActivity;
-import tw.nekomimi.nekogram2.MessageHelper;
+import tw.nekomimi.nekogram.MessageDetailsActivity;
+import tw.nekomimi.nekogram.MessageHelper;
 import tw.nekomimi.nekogram.NekoConfig;
 
 import java.io.BufferedWriter;

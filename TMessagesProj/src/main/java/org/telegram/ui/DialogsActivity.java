@@ -43,6 +43,7 @@ import androidx.recyclerview.widget.LinearSmoothScrollerMiddle;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
+import android.util.SparseBooleanArray;
 import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
@@ -139,8 +140,8 @@ import org.telegram.ui.Components.UndoView;
 import java.util.ArrayList;
 import java.util.Date;
 
-import tw.nekomimi.nekogram2.FilterPopup;
-import tw.nekomimi.nekogram2.MessageHelper;
+import tw.nekomimi.nekogram.FilterPopup;
+import tw.nekomimi.nekogram.MessageHelper;
 
 public class DialogsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     
@@ -235,7 +236,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private boolean resetDelegate = true;
     private int dialogsType;
 
-    public static boolean[] dialogsLoaded = new boolean[UserConfig.MAX_ACCOUNT_COUNT];
+    public static SparseBooleanArray dialogsLoaded = new SparseBooleanArray();
     private boolean searching;
     private boolean searchWas;
     private boolean onlySelect;
@@ -950,7 +951,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetPasscode);
         }
 
-        if (!dialogsLoaded[currentAccount]) {
+        if (!dialogsLoaded.get(currentAccount)) {
             getMessagesController().loadGlobalNotificationsSettings();
             getMessagesController().loadDialogs(folderId, 0, 100, true);
             getMessagesController().loadHintDialogs();
@@ -958,7 +959,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             getContactsController().checkInviteText();
             getMediaDataController().loadRecents(MediaDataController.TYPE_FAVE, false, true, false);
             getMediaDataController().checkFeaturedStickers();
-            dialogsLoaded[currentAccount] = true;
+            dialogsLoaded.put(currentAccount, true);
         }
         getMessagesController().loadPinnedDialogs(folderId, 0, null);
         return true;
@@ -1155,7 +1156,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             imageView.getImageReceiver().setCurrentAccount(currentAccount);
             imageView.setImage(ImageLocation.getForUser(user, false), "50_50", avatarDrawable, user);
 
-            for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+            for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
                 TLRPC.User u = AccountInstance.getInstance(a).getUserConfig().getCurrentUser();
                 if (u != null) {
                     AccountSelectCell cell = new AccountSelectCell(context);
@@ -1183,7 +1184,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     updatePasscodeButton();
                 } else if (id == 2) {
                     presentFragment(new ProxyListActivity());
-                } else if (id >= 10 && id < 10 + UserConfig.MAX_ACCOUNT_COUNT) {
+                } else if (id >= 10 && id < 10 + UserConfig.getInstanceSize()) {
                     if (getParentActivity() == null) {
                         return;
                     }
@@ -3456,7 +3457,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 checkUnreadCount(true);
             }*/
         } else if (id == NotificationCenter.appDidLogout) {
-            dialogsLoaded[currentAccount] = false;
+            dialogsLoaded.put(currentAccount, false);
         } else if (id == NotificationCenter.encryptedChatUpdated) {
             updateVisibleRows(0);
         } else if (id == NotificationCenter.contactsDidLoad) {

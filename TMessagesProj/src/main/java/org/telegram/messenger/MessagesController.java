@@ -53,7 +53,7 @@ import java.util.concurrent.CountDownLatch;
 
 import androidx.core.app.NotificationManagerCompat;
 
-import tw.nekomimi.nekogram2.FilterPopup;
+import tw.nekomimi.nekogram.FilterPopup;
 import tw.nekomimi.nekogram.NekoConfig;
 
 public class MessagesController extends BaseController implements NotificationCenter.NotificationCenterDelegate {
@@ -356,14 +356,14 @@ public class MessagesController extends BaseController implements NotificationCe
         return 0;
     };
 
-    private static volatile MessagesController[] Instance = new MessagesController[UserConfig.MAX_ACCOUNT_COUNT];
+    private static volatile SparseArray< MessagesController> Instance = new SparseArray<>();
     public static MessagesController getInstance(int num) {
-        MessagesController localInstance = Instance[num];
+        MessagesController localInstance = Instance.get(num);
         if (localInstance == null) {
             synchronized (MessagesController.class) {
-                localInstance = Instance[num];
+                localInstance = Instance.get(num);
                 if (localInstance == null) {
-                    Instance[num] = localInstance = new MessagesController(num);
+                    Instance.put(num, localInstance = new MessagesController(num));
                 }
             }
         }
@@ -1117,7 +1117,7 @@ public class MessagesController extends BaseController implements NotificationCe
         getMediaDataController().cleanup();
         getTonController().cleanup();
 
-        DialogsActivity.dialogsLoaded[currentAccount] = false;
+        DialogsActivity.dialogsLoaded.put(currentAccount, false);
 
         SharedPreferences.Editor editor = notificationsPreferences.edit();
         editor.clear().commit();
@@ -7204,7 +7204,7 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC.TL_account_unregisterDevice req = new TLRPC.TL_account_unregisterDevice();
             req.token = SharedConfig.pushString;
             req.token_type = 2;
-            for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+            for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
                 UserConfig userConfig = UserConfig.getInstance(a);
                 if (a != currentAccount && userConfig.isClientActivated()) {
                     req.other_uids.add(userConfig.getClientUserId());
@@ -7267,7 +7267,7 @@ public class MessagesController extends BaseController implements NotificationCe
         req.token = regid;
         req.no_muted = false;
         req.secret = SharedConfig.pushAuthKey;
-        for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+        for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
             UserConfig userConfig = UserConfig.getInstance(a);
             if (a != currentAccount && userConfig.isClientActivated()) {
                 int uid = userConfig.getClientUserId();

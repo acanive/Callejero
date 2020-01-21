@@ -70,14 +70,14 @@ import tw.nekomimi.nekogram.NekoConfig;
 @SuppressWarnings("unchecked")
 public class MediaDataController extends BaseController {
 
-    private static volatile MediaDataController[] Instance = new MediaDataController[UserConfig.MAX_ACCOUNT_COUNT];
+    private static volatile SparseArray<MediaDataController> Instance = new SparseArray<>();
     public static MediaDataController getInstance(int num) {
-        MediaDataController localInstance = Instance[num];
+        MediaDataController localInstance = Instance.get(num);
         if (localInstance == null) {
             synchronized (MediaDataController.class) {
-                localInstance = Instance[num];
+                localInstance = Instance.get(num);
                 if (localInstance == null) {
-                    Instance[num] = localInstance = new MediaDataController(num);
+                    Instance.put(num, localInstance = new MediaDataController(num));
                 }
             }
         }
