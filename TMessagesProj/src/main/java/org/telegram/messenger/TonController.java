@@ -24,6 +24,7 @@ import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -106,14 +107,14 @@ public class TonController extends BaseController {
         void run(byte[] param);
     }
 
-    private static volatile TonController[] Instance = new TonController[UserConfig.MAX_ACCOUNT_COUNT];
+    private static volatile SparseArray<TonController> Instance = new SparseArray<>();
     public static TonController getInstance(int num) {
-        TonController localInstance = Instance[num];
+        TonController localInstance = Instance.get(num);
         if (localInstance == null) {
             synchronized (TonController.class) {
-                localInstance = Instance[num];
+                localInstance = Instance.get(num);
                 if (localInstance == null) {
-                    Instance[num] = localInstance = new TonController(num);
+                    Instance.put(num, localInstance = new TonController(num));
                 }
             }
         }

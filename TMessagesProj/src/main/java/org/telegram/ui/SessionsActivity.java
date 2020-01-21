@@ -243,7 +243,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                                 }
                             });
 
-                            for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+                            for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
                                 UserConfig userConfig = UserConfig.getInstance(a);
                                 if (!userConfig.isClientActivated()) {
                                     continue;

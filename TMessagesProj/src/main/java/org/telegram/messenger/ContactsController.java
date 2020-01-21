@@ -79,7 +79,7 @@ public class ContactsController extends BaseController {
     private class MyContentObserver extends ContentObserver {
 
         private Runnable checkRunnable = () -> {
-            for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+            for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
                 if (UserConfig.getInstance(a).isClientActivated()) {
                     ConnectionsManager.getInstance(a).resumeNetworkMaybe();
                     ContactsController.getInstance(a).checkContacts();
@@ -174,14 +174,14 @@ public class ContactsController extends BaseController {
 
     private int completedRequestsCount;
     
-    private static volatile ContactsController[] Instance = new ContactsController[UserConfig.MAX_ACCOUNT_COUNT];
+    private static volatile SparseArray<ContactsController> Instance = new SparseArray<>();
     public static ContactsController getInstance(int num) {
-        ContactsController localInstance = Instance[num];
+        ContactsController localInstance = Instance.get(num);
         if (localInstance == null) {
             synchronized (ContactsController.class) {
-                localInstance = Instance[num];
+                localInstance = Instance.get(num);
                 if (localInstance == null) {
-                    Instance[num] = localInstance = new ContactsController(num);
+                    Instance.put(num, localInstance = new ContactsController(num));
                 }
             }
         }
@@ -316,7 +316,7 @@ public class ContactsController extends BaseController {
             for (int a = 0; a < accounts.length; a++) {
                 Account acc = accounts[a];
                 boolean found = false;
-                for (int b = 0; b < UserConfig.MAX_ACCOUNT_COUNT; b++) {
+                for (int b = 0; b < UserConfig.getInstanceSize(); b++) {
                     TLRPC.User user = UserConfig.getInstance(b).getCurrentUser();
                     if (user != null) {
                         if (acc.name.equals("" + user.id)) {
@@ -361,7 +361,7 @@ public class ContactsController extends BaseController {
             for (int a = 0; a < accounts.length; a++) {
                 Account acc = accounts[a];
                 boolean found = false;
-                for (int b = 0; b < UserConfig.MAX_ACCOUNT_COUNT; b++) {
+                for (int b = 0; b < UserConfig.getInstanceSize(); b++) {
                     TLRPC.User user = UserConfig.getInstance(b).getCurrentUser();
                     if (user != null) {
                         if (acc.name.equals("" + user.id)) {
@@ -437,7 +437,7 @@ public class ContactsController extends BaseController {
                         systemAccount = null;
                         for (int a = 0; a < accounts.length; a++) {
                             Account acc = accounts[a];
-                            for (int b = 0; b < UserConfig.MAX_ACCOUNT_COUNT; b++) {
+                            for (int b = 0; b < UserConfig.getInstanceSize(); b++) {
                                 TLRPC.User user = UserConfig.getInstance(b).getCurrentUser();
                                 if (user != null) {
                                     if (acc.name.equals("" + user.id)) {

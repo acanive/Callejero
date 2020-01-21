@@ -1,6 +1,7 @@
 package org.telegram.messenger;
 
 import android.os.SystemClock;
+import android.util.SparseArray;
 
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -32,15 +33,15 @@ public class FileRefController extends BaseController {
 
     private long lastCleanupTime = SystemClock.uptimeMillis();
 
-    private static volatile FileRefController[] Instance = new FileRefController[UserConfig.MAX_ACCOUNT_COUNT];
+    private static volatile SparseArray<FileRefController> Instance = new SparseArray<>();
 
     public static FileRefController getInstance(int num) {
-        FileRefController localInstance = Instance[num];
+        FileRefController localInstance = Instance.get(num);
         if (localInstance == null) {
             synchronized (FileRefController.class) {
-                localInstance = Instance[num];
+                localInstance = Instance.get(num);
                 if (localInstance == null) {
-                    Instance[num] = localInstance = new FileRefController(num);
+                    Instance.put(num, localInstance = new FileRefController(num));
                 }
             }
         }

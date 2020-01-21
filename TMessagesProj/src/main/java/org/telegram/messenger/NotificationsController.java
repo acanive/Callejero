@@ -128,15 +128,15 @@ public class NotificationsController extends BaseController {
         audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService(Context.AUDIO_SERVICE);
     }
     
-    private static volatile NotificationsController[] Instance = new NotificationsController[UserConfig.MAX_ACCOUNT_COUNT];
+    private static volatile SparseArray<NotificationsController> Instance = new SparseArray<>();
 
     public static NotificationsController getInstance(int num) {
-        NotificationsController localInstance = Instance[num];
+        NotificationsController localInstance = Instance.get(num);
         if (localInstance == null) {
             synchronized (NotificationsController.class) {
-                localInstance = Instance[num];
+                localInstance = Instance.get(num);
                 if (localInstance == null) {
-                    Instance[num] = localInstance = new NotificationsController(num);
+                    Instance.put(num, localInstance = new NotificationsController(num));
                 }
             }
         }
@@ -1044,7 +1044,7 @@ public class NotificationsController extends BaseController {
 
     private int getTotalAllUnreadCount() {
         int count = 0;
-        for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+        for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
             if (UserConfig.getInstance(a).isClientActivated()) {
                 NotificationsController controller = getInstance(a);
                 if (controller.showBadgeNumber) {
