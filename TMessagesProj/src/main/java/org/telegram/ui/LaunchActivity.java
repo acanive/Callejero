@@ -492,7 +492,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
                 drawerLayoutContainer.closeDrawer(false);
             } else if (view instanceof DrawerAddCell) {
                 int freeAccount = -1;
-                for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+                for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
                     if (!UserConfig.getInstance(a).isClientActivated()) {
                         freeAccount = a;
                         break;
@@ -778,7 +778,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
 
     private void switchToAvailableAccountOrLogout() {
         int account = -1;
-        for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+        for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
             if (UserConfig.getInstance(a).isClientActivated()) {
                 account = a;
                 break;
@@ -1657,7 +1657,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
                                         if (cursor != null) {
                                             if (cursor.moveToFirst()) {
                                                 int accountId = Utilities.parseInt(cursor.getString(cursor.getColumnIndex("account_name")));
-                                                for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+                                                for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
                                                     if (UserConfig.getInstance(a).getClientUserId() == accountId) {
                                                         intentAccount[0] = a;
                                                         switchToAccount(intentAccount[0], true);

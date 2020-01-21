@@ -67,16 +67,16 @@ public class MessagesStorage extends BaseController {
 
     private CountDownLatch openSync = new CountDownLatch(1);
 
-    private static volatile MessagesStorage[] Instance = new MessagesStorage[UserConfig.MAX_ACCOUNT_COUNT];
+    private static volatile SparseArray<MessagesStorage> Instance = new SparseArray<>();
     private final static int LAST_DB_VERSION = 64;
 
     public static MessagesStorage getInstance(int num) {
-        MessagesStorage localInstance = Instance[num];
+        MessagesStorage localInstance = Instance.get(num);
         if (localInstance == null) {
             synchronized (MessagesStorage.class) {
-                localInstance = Instance[num];
+                localInstance = Instance.get(num);
                 if (localInstance == null) {
-                    Instance[num] = localInstance = new MessagesStorage(num);
+                    Instance.put(num, localInstance = new MessagesStorage(num));
                 }
             }
         }

@@ -3,6 +3,7 @@ package tw.nekomimi.nekogram;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -31,7 +32,7 @@ import org.telegram.ui.DialogsActivity;
 import java.util.ArrayList;
 
 public class FilterPopup extends BaseController {
-    private static volatile FilterPopup[] Instance = new FilterPopup[UserConfig.MAX_ACCOUNT_COUNT];
+    private static volatile SparseArray<FilterPopup> Instance = new SparseArray<>();
     private ArrayList<TLRPC.Dialog> dialogsAdmin = new ArrayList<>();
     private ArrayList<TLRPC.Dialog> dialogsUsers = new ArrayList<>();
     private ArrayList<TLRPC.Dialog> dialogsGroups = new ArrayList<>();
@@ -44,12 +45,12 @@ public class FilterPopup extends BaseController {
     }
 
     public static FilterPopup getInstance(int num) {
-        FilterPopup localInstance = Instance[num];
+        FilterPopup localInstance = Instance.get(num);
         if (localInstance == null) {
             synchronized (FilterPopup.class) {
-                localInstance = Instance[num];
+                localInstance = Instance.get(num);
                 if (localInstance == null) {
-                    Instance[num] = localInstance = new FilterPopup(num);
+                    Instance.put(num, localInstance = new FilterPopup(num));
                 }
             }
         }
@@ -358,7 +359,7 @@ public class FilterPopup extends BaseController {
             ActionBarMenuSubItem cell2 = new ActionBarMenuSubItem(dialogsActivity.getParentActivity());
             linearLayout.addView(cell2);
             gridLayout.addView(cell);
-            UnreadCountBadgeView badge = new UnreadCountBadgeView(dialogsActivity.getParentActivity(), unreadCounts.get(a).toString());
+            tw.nekomimi.nekogram.UnreadCountBadgeView badge = new tw.nekomimi.nekogram.UnreadCountBadgeView(dialogsActivity.getParentActivity(), unreadCounts.get(a).toString());
             gridLayout.addView(badge);
             if (unreadCounts.get(a) == 0)
                 badge.setVisibility(View.GONE);

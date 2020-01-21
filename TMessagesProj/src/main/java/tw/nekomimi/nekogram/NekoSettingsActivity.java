@@ -147,7 +147,7 @@ public class NekoSettingsActivity extends BaseFragment {
                 if (view instanceof TextCheckCell) {
                     ((TextCheckCell) view).setChecked(NekoConfig.useIPv6);
                 }
-                for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+                for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
                     if (UserConfig.getInstance(a).isClientActivated()) {
                         ConnectionsManager.native_setUseIpv6(a, NekoConfig.useIPv6);
                     }
@@ -183,7 +183,7 @@ public class NekoSettingsActivity extends BaseFragment {
                 if (view instanceof TextCheckCell) {
                     ((TextCheckCell) view).setChecked(NekoConfig.hideProxySponsorChannel);
                 }
-                for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+                for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
                     if (UserConfig.getInstance(a).isClientActivated()) {
                         MessagesController.getInstance(a).checkProxyInfo(true);
                     }

@@ -750,10 +750,10 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
         updateSelectedCount(0);
 
-        if (!DialogsActivity.dialogsLoaded[currentAccount]) {
+        if (!DialogsActivity.dialogsLoaded.get(currentAccount)) {
             MessagesController.getInstance(currentAccount).loadDialogs(0, 0, 100, true);
             ContactsController.getInstance(currentAccount).checkInviteText();
-            DialogsActivity.dialogsLoaded[currentAccount] = true;
+            DialogsActivity.dialogsLoaded.put(currentAccount, true);
         }
         if (listAdapter.dialogs.isEmpty()) {
             NotificationCenter.getInstance(currentAccount).addObserver(this, NotificationCenter.dialogsNeedReload);

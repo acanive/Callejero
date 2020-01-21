@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.os.SystemClock;
 import android.util.Base64;
+import android.util.SparseArray;
 
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
@@ -21,8 +22,8 @@ import java.io.File;
 
 public class UserConfig extends BaseController {
 
+    private static final int MAX_ACCOUNT = 998;
     public static int selectedAccount;
-    public final static int MAX_ACCOUNT_COUNT = 32;
 
     private final Object sync = new Object();
     private boolean configLoaded;
@@ -82,14 +83,15 @@ public class UserConfig extends BaseController {
     public String walletConfigFromUrl;
     public int walletConfigType;
 
-    private static volatile UserConfig[] Instance = new UserConfig[UserConfig.MAX_ACCOUNT_COUNT];
+    private static volatile SparseArray<UserConfig> Instance = new SparseArray<>();
+
     public static UserConfig getInstance(int num) {
-        UserConfig localInstance = Instance[num];
+        UserConfig localInstance = Instance.get(num);
         if (localInstance == null) {
             synchronized (UserConfig.class) {
-                localInstance = Instance[num];
+                localInstance = Instance.get(num);
                 if (localInstance == null) {
-                    Instance[num] = localInstance = new UserConfig(num);
+                    Instance.put(num, localInstance = new UserConfig(num));
                 }
             }
         }
@@ -98,7 +100,7 @@ public class UserConfig extends BaseController {
 
     public static int getActivatedAccountsCount() {
         int count = 0;
-        for (int a = 0; a < MAX_ACCOUNT_COUNT; a++) {
+        for (int a = 0; a < Instance.size(); a++) {
             if (AccountInstance.getInstance(a).getUserConfig().isClientActivated()) {
                 count++;
             }
@@ -108,6 +110,10 @@ public class UserConfig extends BaseController {
 
     public UserConfig(int instance) {
         super(instance);
+    }
+
+    public static int getMaxInstanceSize() {
+        return MAX_ACCOUNT;
     }
 
     public int getNewMessageId() {
@@ -493,7 +499,7 @@ public class UserConfig extends BaseController {
         isBot = false;
         resetSavedPassword();
         boolean hasActivated = false;
-        for (int a = 0; a < MAX_ACCOUNT_COUNT; a++) {
+        for (int a = 0; a < Instance.size(); a++) {
             if (AccountInstance.getInstance(a).getUserConfig().isClientActivated()) {
                 hasActivated = true;
                 break;
