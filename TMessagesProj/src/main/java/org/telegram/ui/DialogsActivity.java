@@ -1156,7 +1156,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             imageView.getImageReceiver().setCurrentAccount(currentAccount);
             imageView.setImage(ImageLocation.getForUser(user, false), "50_50", avatarDrawable, user);
 
-            for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
+            for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
                 TLRPC.User u = AccountInstance.getInstance(a).getUserConfig().getCurrentUser();
                 if (u != null) {
                     AccountSelectCell cell = new AccountSelectCell(context);
@@ -1184,7 +1184,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     updatePasscodeButton();
                 } else if (id == 2) {
                     presentFragment(new ProxyListActivity());
-                } else if (id >= 10 && id < 10 + UserConfig.getInstanceSize()) {
+                } else if (id >= 10 && id < 10 + UserConfig.getMaxInstanceSize()) {
                     if (getParentActivity() == null) {
                         return;
                     }

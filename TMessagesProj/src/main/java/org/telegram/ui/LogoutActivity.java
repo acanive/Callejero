@@ -66,7 +66,7 @@ public class LogoutActivity extends BaseFragment {
 
         rowCount = 0;
         alternativeHeaderRow = rowCount++;
-        if (true) {
+        if (UserConfig.getActivatedAccountsCount() < UserConfig.getMaxInstanceSize()) {
             addAccountRow = rowCount++;
         } else {
             addAccountRow = -1;
@@ -117,7 +117,7 @@ public class LogoutActivity extends BaseFragment {
         listView.setOnItemClickListener((view, position, x, y) -> {
             if (position == addAccountRow) {
                 int freeAccount = -1;
-                for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
+                for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
                     if (!UserConfig.getInstance(a).isClientActivated()) {
                         freeAccount = a;
                         break;

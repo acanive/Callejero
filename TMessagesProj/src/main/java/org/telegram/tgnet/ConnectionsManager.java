@@ -351,7 +351,7 @@ public class ConnectionsManager extends BaseController {
 
     public static void setLangCode(String langCode) {
         langCode = langCode.replace('_', '-').toLowerCase();
-        for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
+        for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
             native_setLangCode(a, langCode);
         }
     }
@@ -361,14 +361,14 @@ public class ConnectionsManager extends BaseController {
         if (TextUtils.isEmpty(pushString) && !TextUtils.isEmpty(status)) {
             pushString = status;
         }
-        for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
+        for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
             native_setRegId(a, pushString);
         }
     }
 
     public static void setSystemLangCode(String langCode) {
         langCode = langCode.replace('_', '-').toLowerCase();
-        for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
+        for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
             native_setSystemLangCode(a, langCode);
         }
     }
@@ -617,7 +617,7 @@ public class ConnectionsManager extends BaseController {
         if (secret == null) {
             secret = "";
         }
-        for (int a = 0; a < UserConfig.getInstanceSize(); a++) {
+        for (int a = 0; a < UserConfig.getMaxInstanceSize(); a++) {
             if (enabled && !TextUtils.isEmpty(address)) {
                 native_setProxySettings(a, address, port, username, password, secret);
             } else {
